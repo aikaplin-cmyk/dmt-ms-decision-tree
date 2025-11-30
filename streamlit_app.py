@@ -48,6 +48,28 @@ with st.sidebar:
         **PML** (Progressive Multifocal Leukoencephalopathy) is a rare but serious 
         brain infection caused by JC virus reactivation.
         """)
+
+        with st.expander("Risk Tolerance & Treatment Approach"):
+        st.markdown("""
+        **Treatment approach preference** helps guide therapy selection:
+        
+        **High Efficacy/High Risk:**
+        - Prioritizes maximum disease control
+        - Accepts higher monitoring burden and potential side effects
+        - Examples: Ocrelizumab, Natalizumab, Alemtuzumab
+        - Best for: Highly active disease, younger patients, those seeking maximum efficacy
+        
+        **Balanced Approach:**
+        - Moderate efficacy with manageable risks
+        - Examples: Fingolimod, Dimethyl fumarate, Teriflunomide
+        - Best for: Moderate disease activity, balance of lifestyle and efficacy
+        
+        **Low Risk/Lower Efficacy:**
+        - Prioritizes safety and tolerability
+        - Well-established long-term safety data
+        - Examples: Interferons, Glatiramer acetate
+        - Best for: Mild disease, pregnancy planning, prefer minimal risk
+        """)
     
     with st.expander("Patient Preferences"):
         st.markdown("""
@@ -106,8 +128,57 @@ def main_decision_tree():
                 st.session_state.answers['disease_activity'] = disease_activity
                 st.session_state.step = 2
                 st.rerun()
+
+        elif st.session_state.step == 3:
+        st.subheader("Step 2: Patient Risk Tolerance Preferences")
+        st.info("💡 Consider your preference for treatment efficacy vs. side effect risk profile")
+        
+        risk_tolerance = st.radio(
+            "What is your preferred treatment approach?",
+            [
+                "Prioritize high efficacy (accept higher risk of side effects)",
+                "Balanced approach (moderate efficacy and moderate risk)",
+                "Prioritize safety (accept lower efficacy for minimal side effects)"
+            ],
+            key="risk_tolerance"
+        )
+        
+        # Add explanation based on selection
+        if "high efficacy" in risk_tolerance.lower():
+            st.markdown("""
+            **High-efficacy DMTs** offer maximum disease control but require closer monitoring:
+            - Ocrelizumab, Natalizumab, Alemtuzumab, Ofatumumab
+            - Higher reduction in relapse rates and disability progression
+            - May have more intensive monitoring requirements or PML risk
+            """)
+        elif "balanced" in risk_tolerance.lower():
+            st.markdown("""
+            **Moderate-efficacy DMTs** provide good efficacy with manageable side effects:
+            - Fingolimod, Dimethyl fumarate, Teriflunomide, Cladribine
+            - Significant disease control with moderate monitoring
+            - Balance between effectiveness and safety profile
+            """)
+        else:  # Prioritize safety
+            st.markdown("""
+            **First-line DMTs** have excellent safety profiles:
+            - Interferons, Glatiramer acetate
+            - Well-established long-term safety
+            - Suitable for pregnancy planning
+            - May have lower efficacy but minimal serious adverse events
+            """)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("← Back"):
+                st.session_state.step = 1
+                st.rerun()
+        with col2:
+            if st.button("Next →"):
+                st.session_state.answers['risk_tolerance'] = risk_tolerance
+                st.session_state.step = 3
+                st.rerun()
     
-    elif st.session_state.step == 2:
+    elif st.session_state.step == 3:
         st.subheader("Step 3: Patient Considerations")
         
         considerations = st.multiselect(
@@ -127,16 +198,13 @@ def main_decision_tree():
         col1, col2 = st.columns(2)
         with col1:
             if st.button("← Back"):
-                st.session_state.step = 1
-                st.rerun()
+                    st.session_state.step = 2                st.rerun()
         with col2:
             if st.button("Get Recommendations →"):
                 st.session_state.answers['considerations'] = considerations
-                st.session_state.step = 3
-                st.rerun()
+                    st.session_state.step = 4                st.rerun()
     
-    elif st.session_state.step == 3:
-        show_recommendations()
+    elif st.session_state.step == 4:        show_recommendations()
 
 def show_recommendations():
     st.subheader("🎯 Recommended DMT Options")
