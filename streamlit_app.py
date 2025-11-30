@@ -49,8 +49,8 @@ with st.sidebar:
         brain infection caused by JC virus reactivation.
         """)
 
-        with st.expander("Risk Tolerance & Treatment Approach"):
-        st.markdown("""        **Treatment approach preference** helps guide therapy selection:
+            with st.expander("Risk Tolerance & Treatment Approach"):
+                st.markdown("""        **Treatment approach preference** helps guide therapy selection:
         
         **High Efficacy/High Risk:**
         - Prioritizes maximum disease control
@@ -68,7 +68,7 @@ with st.sidebar:
         - Well-established long-term safety data
         - Examples: Interferons, Glatiramer acetate
         - Best for: Mild disease, pregnancy planning, prefer minimal risk
-        """)
+                """)
     
     with st.expander("Patient Preferences"):
         st.markdown("""
