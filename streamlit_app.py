@@ -50,8 +50,7 @@ with st.sidebar:
         """)
 
         with st.expander("Risk Tolerance & Treatment Approach"):
-        st.markdown("""
-        **Treatment approach preference** helps guide therapy selection:
+        st.markdown("""        **Treatment approach preference** helps guide therapy selection:
         
         **High Efficacy/High Risk:**
         - Prioritizes maximum disease control
