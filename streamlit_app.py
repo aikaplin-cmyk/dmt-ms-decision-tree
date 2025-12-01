@@ -49,7 +49,7 @@ with st.sidebar:
         brain infection caused by JC virus reactivation.
         """)
 
-            with st.expander("Risk Tolerance & Treatment Approach"):
+       with st.expander("Risk Tolerance & Treatment Approach"):
                 st.markdown("""        **Treatment approach preference** helps guide therapy selection:
         
         **High Efficacy/High Risk:**
