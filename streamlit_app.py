@@ -129,7 +129,7 @@ def main_decision_tree():
                 st.rerun()
 
     elif st.session_state.step == 2:        st.subheader("Step 2: Patient Risk Tolerance Preferences")
-        st.info("💡 Consider your preference for treatment efficacy vs. side effect risk profile")
+    st.info("💡 Consider your preference for treatment efficacy vs. side effect risk profile")
         
         risk_tolerance = st.radio(
             "What is your preferred treatment approach?",
