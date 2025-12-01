@@ -46,7 +46,7 @@ ms_type = st.radio(
     key="ms_type"
 )
 
-if st.button("Next →"):
+if st.button("Next →", key="next_step1"):
     st.session_state.answers['ms_type'] = ms_type
     st.session_state.step = 1
     st.rerun()
@@ -62,12 +62,12 @@ if st.session_state.step == 1:
     
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("← Back"):
+        if st.button("← Back", key="back_step1"):
             st.session_state.step = 0
             st.rerun()
     
     with col2:
-        if st.button("Next →"):
+        if st.button("Next →", key="next_step2"):
             st.session_state.answers['disease_activity'] = disease_activity
             st.session_state.step = 2
             st.rerun()
@@ -84,12 +84,12 @@ if st.session_state.step == 2:
     
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("← Back"):
+        if st.button("← Back", key="back_step2"):
             st.session_state.step = 1
             st.rerun()
     
     with col2:
-        if st.button("Get Recommendations ✔️"):
+        if st.button("Get Recommendations ✔️", key="get_recommendations"):
             st.session_state.answers['risk_tolerance'] = risk_tolerance
             st.session_state.step = 3
             st.rerun()
@@ -139,7 +139,7 @@ if st.session_state.step == 3:
         - Glatiramer acetate: ~30% ARR reduction
         """)
     
-    if st.button("↻ Start Over"):
+    if st.button("↻ Start Over", key="start_over"):
         st.session_state.step = 0
         st.session_state.answers = {}
         st.rerun()
